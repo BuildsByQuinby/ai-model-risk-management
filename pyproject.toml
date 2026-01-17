@@ -20,3 +20,8 @@ gov = "govcli.cli:app"
 
 [tool.setuptools]
 packages = ["govcli"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["govcli*"]
+exclude = ["models*", "controls*", "artifacts*", "tests*", ".github*"]
