@@ -2,13 +2,14 @@ name: Governance Gate
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   governance:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -18,16 +19,21 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Show packaging config
+        run: |
+          echo "===== pyproject.toml ====="
+          cat pyproject.toml
+          echo "===== setup.cfg ====="
+          if [ -f setup.cfg ]; then cat setup.cfg; else echo "no setup.cfg"; fi
+
       - name: Install
         run: |
-          python -m pip install --upgrade pip
+          python -m pip install --upgrade pip setuptools wheel
           pip install -e .
 
       - name: Run governance gate for sample model
         run: |
           gov assess credit_default_lr
           gov generate credit_default_lr
-          # Uncomment next line to see the PR fail until approval exists (Medium/High tiers require it)
-          # gov gate credit_default_lr
           gov approve credit_default_lr --approver "CI Demo Approver" --decision approved --reason "CI demo approval"
           gov gate credit_default_lr
