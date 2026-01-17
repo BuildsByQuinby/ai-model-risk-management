@@ -60,6 +60,7 @@ training or ML experimentation.
 
 ## Repository Structure
 
+```text
 .
 ├── govcli/                 # Governance CLI implementation
 ├── models/                 # Model inventory (YAML specs)
@@ -68,9 +69,10 @@ training or ML experimentation.
 ├── audit_log.jsonl         # Append-only audit trail
 ├── docs/
 │   └── screenshots/        # CI evidence screenshots
-└── .github/workflows/      # CI governance gate
+└── .github/
+    └── workflows/          # CI governance gate
+```
 
----
 
 ## Local Quickstart (CLI)
 
