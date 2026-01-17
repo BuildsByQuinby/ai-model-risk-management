@@ -1,0 +1,27 @@
+tiers:
+  low:
+    required_artifacts:
+      - model_card.md
+      - data_sheet.md
+      - monitoring_plan.md
+    requires_approval: false
+
+  medium:
+    required_artifacts:
+      - model_card.md
+      - data_sheet.md
+      - validation_report.md
+      - monitoring_plan.md
+    requires_approval: true
+
+  high:
+    required_artifacts:
+      - model_card.md
+      - data_sheet.md
+      - validation_report.md
+      - monitoring_plan.md
+      - change_log.md
+    requires_approval: true
+
+approval:
+  allowed_decisions: ["approved", "rejected", "conditional"]
