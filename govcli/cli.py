@@ -108,3 +108,7 @@ def gate(model_id: str):
 
 if __name__ == "__main__":
     app()
+
+
+if __name__ == "__main__":
+    app()
