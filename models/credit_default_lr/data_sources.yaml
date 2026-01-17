@@ -1,0 +1,17 @@
+sources:
+  - name: Loan Origination System
+    owner: Lending Ops
+    pii: true
+    fields: ["income", "dti", "fico", "loan_amount"]
+  - name: Credit Bureau Feed
+    owner: Third Party Vendor
+    pii: true
+    fields: ["fico", "utilization", "delinquencies_24m"]
+
+retention:
+  policy: "7 years"
+  justification: "Regulatory and audit requirements"
+
+quality_checks:
+  - "Missingness rate < 2% for core features"
+  - "Outlier caps applied to income and loan_amount"
