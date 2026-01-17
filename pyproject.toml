@@ -6,8 +6,14 @@ build-backend = "setuptools.build_meta"
 name = "ai-model-risk-management"
 version = "0.1.0"
 description = "Lightweight Model Risk Management (MRM) toolkit"
+readme = "README.md"
 requires-python = ">=3.10"
-dependencies = ["typer>=0.12.0","pydantic>=2.6.0","pyyaml>=6.0.1","rich>=13.7.0"]
+dependencies = [
+  "typer>=0.12.0",
+  "pydantic>=2.6.0",
+  "pyyaml>=6.0.1",
+  "rich>=13.7.0",
+]
 
 [project.scripts]
 gov = "govcli.cli:app"
