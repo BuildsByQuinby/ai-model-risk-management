@@ -1,0 +1,37 @@
+model_id: credit_default_lr
+name: Credit Default Probability (Logistic Regression)
+owner: Risk Analytics
+business_line: Consumer Lending
+use_case: Underwriting decision support (probability of default)
+model_type: logistic_regression
+status: pre_prod
+version: 0.1.0
+
+automation_level: "decision_support"   # decision_support | partial_auto | full_auto
+customer_impact: "high"               # low | medium | high
+materiality: "high"                   # low | medium | high
+
+data_sensitivity: "pii"               # none | internal | pii
+explainability: "high"                # low | medium | high
+drift_risk: "medium"                  # low | medium | high
+
+jurisdictions: ["US"]
+regulatory_flags: ["fair_lending", "adverse_action"]
+
+training_data:
+  description: "Historical loan applications and repayment outcomes (2019-2024)."
+  time_window: "2019-01-01 to 2024-12-31"
+  label: "default_within_12_months"
+  features: ["income", "dti", "fico", "utilization", "delinquencies_24m", "loan_amount"]
+
+deployment:
+  environment: "aws"
+  interface: "batch_scoring"
+  downstream_systems: ["loan_origination_platform"]
+
+monitoring:
+  performance_metrics: ["auc", "ks"]
+  drift_metrics: ["psi_income", "psi_fico", "psi_dti"]
+  thresholds:
+    psi_warning: 0.1
+    psi_alert: 0.2
